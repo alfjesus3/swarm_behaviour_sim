@@ -1,0 +1,163 @@
+defaults:
+  - _self_
+
+_target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombos
+
+# Define the enum values and their properties
+Hauert2022:
+  _target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombo
+  display_name: "Hauert et al. 2022"
+  names:
+    - "maximum_swarm_shift"
+    - "center_of_mass" 
+    - "swarm_mode_index"
+    - "longest_path"
+    - "maximum_radius"
+    - "average_local_density"
+    - "average_nearest_neighbour_distance"
+    - "beta_index"
+  n_agents: 1
+  dim: 9  # --> Note that is 8 + 1 because of the `center_of_mass` 
+  npz_paths:
+    - "../../2025-07-31/20-08-25/rey_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/vic_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/aggreg_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/disper_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/balli_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/brown_swarm_metrics_40b.npz"
+    - "../../2025-07-31/20-08-25/rey_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/vic_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/aggreg_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/disper_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/balli_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/brown_swarm_metrics_30b.npz"
+    - "../../2025-07-31/20-08-25/rey_swarm_metrics_40u.npz"
+    - "../../2025-07-31/20-08-25/vic_swarm_metrics_40u.npz"
+    - "../../2025-07-31/20-08-25/aggreg_swarm_metrics_40u.npz"
+    - "../../2025-07-31/20-08-25/disper_swarm_metrics_40u.npz"
+    - "../../2025-07-31/20-08-25/balli_swarm_metrics_40u.npz"
+    - "../../2025-07-31/20-08-25/brown_swarm_metrics_40u.npz"
+
+
+LocalBoidsFeats:
+  _target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombo
+  display_name: "Inspired by Gomes et al. 2013"
+  names:
+    - "boid_x"
+    - "boid_y" 
+    - "boid_vx"
+    - "boid_vy"
+  n_agents: ${behaviours.class_m.boid_count}
+  dim: 4
+  npz_paths:
+    - "../../2025-07-30/18-04-16/rey_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/vic_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/aggreg_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/disper_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/balli_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/brown_swarm_metrics_40b.npz"
+    - "../../2025-07-30/18-04-16/rey_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/vic_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/aggreg_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/disper_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/balli_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/brown_swarm_metrics_30b.npz"
+    - "../../2025-07-30/18-04-16/rey_swarm_metrics_40u.npz"
+    - "../../2025-07-30/18-04-16/vic_swarm_metrics_40u.npz"
+    - "../../2025-07-30/18-04-16/aggreg_swarm_metrics_40u.npz"
+    - "../../2025-07-30/18-04-16/disper_swarm_metrics_40u.npz"
+    - "../../2025-07-30/18-04-16/balli_swarm_metrics_40u.npz"
+    - "../../2025-07-30/18-04-16/brown_swarm_metrics_40u.npz"
+
+MadeUpPreliminary:
+  _target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombo
+  display_name: "My made up combo"
+  names:
+    - "area_swarm"
+    - "polarisation_swarm"
+    - "average_local_density"
+    - "beta_index"
+    - "mse_swarm"
+  n_agents: 1
+  dim: 5
+  npz_paths:
+    - "../../2025-07-31/11-42-39/rey_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/vic_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/aggreg_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/disper_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/balli_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/brown_swarm_metrics_40b.npz"
+    - "../../2025-07-31/11-42-39/rey_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/vic_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/aggreg_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/disper_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/balli_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/brown_swarm_metrics_30b.npz"
+    - "../../2025-07-31/11-42-39/rey_swarm_metrics_40u.npz"
+    - "../../2025-07-31/11-42-39/vic_swarm_metrics_40u.npz"
+    - "../../2025-07-31/11-42-39/aggreg_swarm_metrics_40u.npz"
+    - "../../2025-07-31/11-42-39/disper_swarm_metrics_40u.npz"
+    - "../../2025-07-31/11-42-39/balli_swarm_metrics_40u.npz"
+    - "../../2025-07-31/11-42-39/brown_swarm_metrics_40u.npz"
+
+Yang2023:
+  _target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombo
+  display_name: "Yang et al. 2023"
+  names:
+    - "collision_count"
+    - "flock_density"
+    - "grouping"
+    - "straggler_count"
+    - "order"
+    - "subgroup_count"
+    # - "diffusion"
+  n_agents: 1
+  dim: 7 # --> Note that is 6 + 1 because of the `order`
+  npz_paths:
+    - "../../2025-09-01/20-56-29/rey_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/vic_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/aggreg_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/disper_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/balli_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/brown_swarm_metrics_40b.npz"
+    - "../../2025-09-01/20-56-29/rey_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/vic_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/aggreg_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/disper_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/balli_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/brown_swarm_metrics_30b.npz"
+    - "../../2025-09-01/20-56-29/rey_swarm_metrics_40u.npz"
+    - "../../2025-09-01/20-56-29/vic_swarm_metrics_40u.npz"
+    - "../../2025-09-01/20-56-29/aggreg_swarm_metrics_40u.npz"
+    - "../../2025-09-01/20-56-29/disper_swarm_metrics_40u.npz"
+    - "../../2025-09-01/20-56-29/balli_swarm_metrics_40u.npz"
+    - "../../2025-09-01/20-56-29/brown_swarm_metrics_40u.npz"
+
+Kuckling2023:
+  _target_: swarm_hydra.metrics.swarm_features_combos.FeaturesCombo
+  display_name: "Kuckling et al. 2023"
+  names:
+    - "neighbor_shortest_distances"
+  n_agents: ${behaviours.class_m.boid_count}
+  dim: 1
+  npz_paths:
+    - "../../2025-09-01/15-26-44/rey_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/vic_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/aggreg_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/disper_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/balli_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/brown_swarm_metrics_40b.npz"
+    - "../../2025-09-01/15-26-44/rey_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/vic_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/aggreg_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/disper_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/balli_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/brown_swarm_metrics_30b.npz"
+    - "../../2025-09-01/15-26-44/rey_swarm_metrics_40u.npz"
+    - "../../2025-09-01/15-26-44/vic_swarm_metrics_40u.npz"
+    - "../../2025-09-01/15-26-44/aggreg_swarm_metrics_40u.npz"
+    - "../../2025-09-01/15-26-44/disper_swarm_metrics_40u.npz"
+    - "../../2025-09-01/15-26-44/balli_swarm_metrics_40u.npz"
+    - "../../2025-09-01/15-26-44/brown_swarm_metrics_40u.npz"
+
+selected_combo: "Yang2023"

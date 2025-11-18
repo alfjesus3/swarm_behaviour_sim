@@ -1,0 +1,28 @@
+num_dims: 0                                       # Number of dimensions of the problem to optimize
+selected_metrics: []                            # Choose from available metrics
+  # - ${metrics.mse_swarm.name}
+  # - ${metrics.area_swarm.name}
+  # - ${metrics.polarisation_swarm.name}
+  # - ${metrics.average_local_density.name}
+  # - ${metrics.beta_index.name}
+
+max_iterations: 10                               # Maximum optimization iterations
+seeds_per_exp_rep: ${config.seeds_per_exp_rep}    # The seed for pseudo-rand number gen for len(seeds_per_exp_rep) experiment repetitions
+init_range: [0.0, 100.0]                          # [min_val, max_val] search space initialization range
+noise_params: [0.0, 15.0]                                        # Noise [mean, std] parameters to add to initial state positions
+storing_metrics: False                               # store the metrics data during the optimization process
+
+
+algorithm:
+  _target_: ${fit.pso}
+
+pso:
+  impl:
+    _target_: "evosax.PSO"                          # Using evosax's Particle Swarm Optimization
+  name: "Particle Swarm Optimization"
+  population_size: 10                             # Number of particles
+  inertia: 0.75                                   # Inertia weight
+  cognitive_coef: 1.5                             # Personal best influence
+  social_coef: 2.0                                # Global best influence
+  min_clamp: [0.0, 0.0]  # [0., 0., 0., 0., 0., 0.]             # Optimized parameters min range
+  max_clamp: [100.0, 100.0]  # [100., 100., 100., 5., 5., 5.]       # Optimized parameters max range

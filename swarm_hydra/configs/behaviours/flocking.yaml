@@ -1,0 +1,60 @@
+flocking:
+  name: flocking
+  # General Simulation Parameters
+  box_init: 0.0                             # (box_init, box_init) is the left-bottom pt of the simulation box
+  box_size: 500.0                           # Side length of the simulation box
+  boid_count: 40                           # Number of boids
+  dim: 2                                    # Spatial number of dimensions
+  steps: 100  # 500  # 50                              # Number of sim steps
+  dt: 0.1                                   # Integ. time [s]
+  sim_speed: 1.0                            # Multiple of real-time
+  inner_loop: 50                            # Number of divisions of the integration step for smoother values
+  seed: ${seeds_per_exp_rep[0]}             # For pseudo-random number gen
+  init_speed: 10.0                          # Constant boid initial speed in [m/s]
+  max_abs_f: 10.0                           # Boid's max force in [N] (assuming the boids are have unit mass or it's already accounted for in the force calc.)
+  max_abs_sp: 10.0                          # Boid's max speed in [m/s]
+  walls_b: True                             # If True, it will mean that the outer borders become walls otherwise they are in an "infinite" environment
+  obsta_b: False                            # Allow for obstacles in the box
+  oppon_b: False                            # Allow for opponents/predators in the box
+  storing_data: True                        # If True, it will store the intermediate variables used in the simulation
+  eps: 1.e-8                                # Epsilon value
+
+  model:
+    _target_: flocking.reynolds
+
+  reynolds:
+    force:
+        _target_: swarm_hydra.behaviours.flocking.original_reynolds_force
+    impl:
+      _target_: swarm_hydra.behaviours.flocking.original_reynolds_step
+    feat:
+      gamma: 0.95
+      selected_idxs: []
+    name: reynolds                          # Name of flocking model type
+    separ_dist_thres: 25.0  # 20.0  # 10.0                  # Separation f. computation radius [relative to `box_size`]
+    alignm_dist_thres: 100.0  # 70.0  # 45.0                 # Alignment f. computation radius [relative to `box_size`]
+    cohe_dist_thres: 100.0  # 70.0  # 40.0                   # Cohesion f. computation radius [relative to `box_size`]
+    separ_w: 1.0  # 0.33                           # Weight importance of separation force
+    alignm_w: 0.8  # 0.33                          # Weight importance of alignment force
+    cohe_w: 0.9  # 0.33                            # Weight importance of cohesion force
+    interm_data_names: [
+      "iter", "boids_pos", "boids_vels",
+      "total_force", "dists",
+      "relative_vel_diff_in_neighbourhood",
+      "relative_pos_diff_in_neighbourhood"
+    ]
+
+  vicsek:
+    force:
+        _target_: swarm_hydra.behaviours.flocking.original_vicsek_force
+    impl:
+      _target_: swarm_hydra.behaviours.flocking.original_vicsek_step
+    name: vicsek                            # Name of flocking model type
+    speed_vic: ${behaviours.class_m.init_speed}     # Constant boid speed in [m/s] for Vicsek model
+    noise: 0.24  # 0.47  # (np.pi * 0.15) # 0.1                              # Noise parameter for Vicsek model
+    alignm_dist_thres: 100.0  # 70.0  # 45.0                 # Alignment f. computation radius [relative to `box_size`]
+    alignm_w: 1.0                           # Weight importance of alignment f.
+    interm_data_names: [
+      "iter", "boids_pos", "boids_vels", "boids_theta",
+      "total_force", "dists", "relative_heading_diff"
+    ]

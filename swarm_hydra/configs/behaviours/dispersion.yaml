@@ -1,0 +1,42 @@
+dispersion:
+  name: dispersion
+  # General Simulation Parameters
+  box_init: 0.0                             # (box_init, box_init) is the left-bottom pt of the simulation box
+  box_size: 500.0                           # Side length of the simulation box
+  boid_count: 40                           # Number of boids
+  dim: 2                                    # Spatial number of dimensions
+  steps: 100  # 500  # 50                              # Number of sim steps
+  dt: 0.1                                   # Integ. time [s]
+  sim_speed: 1.0                            # Multiple of real-time
+  inner_loop: 50                            # Number of divisions of the integration step for smoother values
+  seed: ${seeds_per_exp_rep[0]}             # For pseudo-random number gen
+  init_speed: 10.0                          # Constant boid initial speed in [m/s]
+  max_abs_f: 10.0                           # Boid's max force in [N] (assuming the boids are have unit mass or it's already accounted for in the force calc.)
+  max_abs_sp: 10.0                          # Boid's max speed in [m/s]
+  max_long_vel: 10.0                        # Boid's max longitudinal velocity in [m/s]
+  max_rot_vel: 5.0                          # Boid's max rotational/angular velocity in [rad/s]
+  walls_b: True                             # If True, it will mean that the outer borders become walls otherwise they are in an "infinite" environment
+  obsta_b: False                            # Allow for obstacles in the box
+  oppon_b: False                            # Allow for opponents/predators in the box
+  storing_data: True                        # If True, it will store the intermediate variables used in the simulation
+  eps: 1.e-8                                # Epsilon value
+
+  model:
+    _target_: dispersion.repu_field
+
+  repu_field:
+    force:
+        _target_: swarm_hydra.behaviours.dispersion.repulsive_field_dispersion_force
+    impl:
+      _target_: swarm_hydra.behaviours.dispersion.repulsive_field_dispersion_step
+    feat:
+      gamma: 0.95
+      selected_idxs: []
+    name: repu_field                            # Name of dispersion model type
+    min_dist: 0.0  # 70.0  # 45.0                 # Force computation min radius [relative to `box_size`]
+    max_dist: 100.0  # 70.0  # 45.0                 # Force computation max radius [relative to `box_size`]
+    repul_w: 1.0                                           # Weight importance of attraction force
+    interm_data_names: [
+      "iter", "boids_pos", "boids_vels",
+      "total_force", "dists", "angles"
+    ]

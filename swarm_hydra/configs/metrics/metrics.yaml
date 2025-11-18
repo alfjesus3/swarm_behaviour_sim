@@ -1,0 +1,91 @@
+mse_swarm:
+  name: "mse_swarm"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_mse_swarm_configuration
+area_swarm:
+  name: "area_swarm"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_convex_hull_area_swarm_configuration
+polarisation_swarm:
+  name: "polarisation_swarm"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_polarisation_swarm_configuration
+combined_state_count:
+  name: "combined_state_count"
+  num_bins: 3                                                 # For the discretization of the state measures 
+  cut_off: 1.e-2                                                # Removing x% less visited states overall
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_combined_state_count_measure
+sampled_average_state:
+  name: "sampled_average_state"
+  num_win: 10                                                  # The number of windows of samples e.g. [1, 10, 50]            
+  eps: 1.e-8
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_sampled_average_state_measure
+average_local_density:
+  name: "average_local_density"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_average_local_density_measure
+beta_index:
+  name: "beta_index"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_beta_index_measure
+center_of_mass:
+  name: "center_of_mass"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_center_of_mass_swarm_configuration
+maximum_swarm_shift:
+  name: "maximum_swarm_shift"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_maximum_swarm_shift_swarm_configuration
+swarm_mode_index:
+  name: "swarm_mode_index"
+  freq_dist_threshold: 0.5                                  # Note that in the original paper they use `0.1`
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_swarm_mode_index_swarm_configuration
+longest_path:
+  name: "longest_path"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_longest_path_swarm_configuration
+maximum_radius:
+  name: "maximum_radius"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_maximum_radius_swarm_configuration
+average_nearest_neighbour_distance:
+  name: "average_nearest_neighbour_distance"
+  impl:
+    _target_: swarm_hydra.metrics.spatial_metrics.compute_average_nearest_neighbour_distance_measure
+collision_count:
+  name: "collision_count"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_collision_count_measure
+flock_density:
+  name: "flock_density"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_flock_density_measure
+grouping:
+  name: "grouping"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_grouping_measure
+straggler_count:
+  name: "straggler_count"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_straggler_count_measure
+order:
+  name: "order"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_order_measure
+subgroup_count:
+  name: "subgroup_count"
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_subgroup_count_measure
+diffusion:
+  name: "diffusion"
+  time_lag: 5    # 5*dt/dt 
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_diffusion_measure
+neighbor_shortest_distances:
+  name: "neighbor_shortest_distances"
+  desc_sort: True
+  impl:
+  _target_: swarm_hydra.metrics.spatial_metrics.compute_neighbor_shortest_distances_measure

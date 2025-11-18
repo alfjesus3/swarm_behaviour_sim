@@ -1,0 +1,17 @@
+
+defaults:
+  - behaviours: behaviours
+  - metrics: metrics
+  - fit: fit
+  - features: features
+  - _self_                        # ensures that values explicitly set in config.yaml are not overridden.
+
+behaviour: ${behaviours.class_m.name}
+experiment_name: TBD
+seeds_per_exp_rep: [0, 1, 2]   # The seed for pseudo-rand number gen for len(seeds_per_exp_rep) experiment repetitions
+
+hydra:
+  job_logging:
+    formatters:
+      simple:
+        format: "[%(asctime)s][%(levelname)s][%(filename)s:%(lineno)d][%(funcName)s()] %(message)s"

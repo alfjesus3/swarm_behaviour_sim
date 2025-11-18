@@ -1,0 +1,20 @@
+
+defaults:
+  - flocking
+  - aggregation
+  - dispersion
+  - random_walk
+  - _self_
+
+behaviours:
+  flocking: ${..flocking}      
+  aggregation: ${..aggregation}
+  dispersion: ${..dispersion}
+  random_walk: ${..random_walk}
+
+
+class_m: ${behaviours.flocking}
+
+render_on: True                  # If True it will render, otherwise not
+agent_trace_steps: 50            # True if >1 else if =1 then False
+fps_render: 25                   # Frames per second in visualization rendering
